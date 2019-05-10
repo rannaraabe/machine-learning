@@ -14,7 +14,7 @@ public class Simple {
 
 		// load data
 		ArffLoader load = new ArffLoader();
-		DataSource source = new DataSource("all.arff");
+		DataSource source = new DataSource("original-dataset/all.arff");
 
 		Instances train = source.getDataSet();
 		train.setClassIndex(train.numAttributes() - 1);
@@ -63,7 +63,7 @@ public class Simple {
 		System.out.println("Accuracy: " + acc + "%");
 
 		// saving after being sorted
-		BufferedWriter writer = new BufferedWriter(new FileWriter("src/all.arff"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter("results/all.arff"));
 		writer.write(test.toString());
 		writer.newLine();
 		writer.flush();
