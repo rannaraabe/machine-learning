@@ -14,7 +14,7 @@ public class Simple {
 
 		// load data
 		ArffLoader load = new ArffLoader();
-		DataSource source = new DataSource("original-dataset/all.arff");
+		DataSource source = new DataSource("./original-dataset/all.arff");
 
 		Instances train = source.getDataSet();
 		train.setClassIndex(train.numAttributes() - 1);
@@ -63,7 +63,7 @@ public class Simple {
 		System.out.println("Accuracy: " + acc + "%");
 
 		// saving after being sorted
-		BufferedWriter writer = new BufferedWriter(new FileWriter("results/all.arff"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter("./results/all.arff"));
 		writer.write(test.toString());
 		writer.newLine();
 		writer.flush();
@@ -73,7 +73,7 @@ public class Simple {
 		System.out.println("");
 
 		// load data
-		ArffLoader carregar = new ArffLoader();
+//		ArffLoader carregar = new ArffLoader();
 		
 		Instances treinar = source.getDataSet(0);				// base para treinar
 		treinar.setClassIndex(treinar.numAttributes() - 1);
@@ -84,14 +84,15 @@ public class Simple {
 		nb.buildClassifier(treinar);
 
 		// train
-		Instance atual;
-		while ((atual = carregar.getNextInstance(treinar)) != null) {
-			   nb.updateClassifier(atual);
-		}
+//		Instance atual;
+//		while ((atual = carregar.getNextInstance(treinar)) != null) {
+//			   nb.updateClassifier(atual);
+//		}
 		
 		// test
 		Evaluation eval = new Evaluation(treinar);
 		eval.evaluateModel(nb, testar);
+		
 
 		System.out.println("Acertos: " + eval.correct());
 		System.out.println("Erros: " + eval.incorrect());
